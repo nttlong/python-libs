@@ -7,6 +7,7 @@ def field(*args, **kwargs):
     def ret_fn(*args):
         ret = exprs.field_member("" , field_name)
         ret.name = field_name
+        ret.__doc__ = args[0].__doc__
         return ret
 
     return ret_fn
@@ -20,6 +21,7 @@ def table(*ags):
 
         ret = table()
         ret.name = __table_name__
+        ret.__doc__ = args[0].__doc__
         ret.alias = "T" + str(ret.__alias_index__)
         for k, v in args[0].__dict__.items():
             if isinstance(v, exprs.field_member):
