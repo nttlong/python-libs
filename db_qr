@@ -1,0 +1,7 @@
+def qr(db,*args):
+    from sqlalchemy import select
+    for entity in args:
+        entity.metadata.create_all(db.engine)
+    return select(list(args))
+
+
